@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.2.1" use-changelog="false" max-obj-count="16"
+	 gen-disabled-objs-code="false" show-sys-schemas-rects="true"
+	 last-position="-80,772" last-zoom="0.8" scene-rect="-100,0,2545.33,1833.32"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="new_database" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" name-color="#000000" sql-disabled="true">
+</schema>
+
+<table name="Usuario" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="520" y="300"/>
+	<column name="id_usuario" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tipo_usuario">
+		<type name="varchar" length="50"/>
+	</column>
+	<constraint name="PK_id_usuario" type="pk-constr" table="public.&quot;Usuario&quot;">
+		<columns names="id_usuario" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Cliente_comprador" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1220" y="280"/>
+	<column name="id_cliente_comprador" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="pk_id_cliente_comprador" type="pk-constr" table="public.&quot;Cliente_comprador&quot;">
+		<columns names="id_cliente_comprador" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_usuario_Usuario" index="1"/>
+	</customidxs>
+	<customidxs object-type="constraint">
+		<object name="Cliente_comprador_uq" index="1"/>
+		<object name="Usuario_fk" index="0"/>
+	</customidxs></table>
+
+<table name="Cliente_empresa" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="480" y="600"/>
+	<column name="id_cliente_empresa" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="Cliente_empresa_pk" type="pk-constr" table="public.&quot;Cliente_empresa&quot;">
+		<columns names="id_cliente_empresa" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_usuario_Usuario" index="1"/>
+	</customidxs>
+	<customidxs object-type="constraint">
+		<object name="Cliente_empresa_uq" index="1"/>
+		<object name="Usuario_fk" index="0"/>
+	</customidxs></table>
+
+<relationship name="Usuario_has_one_Cliente_comprador" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#7c81dc"
+	 src-table="public.&quot;Cliente_comprador&quot;"
+	 dst-table="public.&quot;Usuario&quot;"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="8.79691" y="-12.6656"/>
+	</label>
+</relationship>
+
+<relationship name="Cliente_empresa_has_one_Usuario" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#b29953"
+	 src-table="public.&quot;Usuario&quot;"
+	 dst-table="public.&quot;Cliente_empresa&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="Vendedor_presencial" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1060" y="600"/>
+	<column name="id_vendedor_presencial" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="pk_id_vendedor" type="pk-constr" table="public.&quot;Vendedor_presencial&quot;">
+		<columns names="id_vendedor_presencial" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_usuario_Usuario" index="1"/>
+	</customidxs>
+	<customidxs object-type="constraint">
+		<object name="Usuario_fk" index="1"/>
+		<object name="Vendedor_presencial_uq" index="2"/>
+	</customidxs></table>
+
+<relationship name="Vendedor_presencial_has_one_Usuario" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#7e44cc"
+	 src-table="public.&quot;Usuario&quot;"
+	 dst-table="public.&quot;Vendedor_presencial&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="Admim" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1080" y="40"/>
+	<column name="id_vendedor_presencial" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="pk_id_admin" type="pk-constr" table="public.&quot;Admim&quot;">
+		<columns names="id_vendedor_presencial" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Usuario_has_one_Admim" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#3e723c"
+	 src-table="public.&quot;Admim&quot;"
+	 dst-table="public.&quot;Usuario&quot;"
+	 src-required="false" dst-required="true"/>
+
+<table name="Evento" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="340" y="1060"/>
+	<column name="id_evento" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="Evento_pk" type="pk-constr" table="public.&quot;Evento&quot;">
+		<columns names="id_evento" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Tipo_de_evento" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="80" y="1580"/>
+	<column name="id_tipo_evento" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="descripcion" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<constraint name="Tipo_de_evento_pk" type="pk-constr" table="public.&quot;Tipo_de_evento&quot;">
+		<columns names="id_tipo_evento" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Local" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1000" y="1600"/>
+	<column name="id_local" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="direccion">
+		<type name="varchar" length="255"/>
+	</column>
+	<constraint name="Local_pk" type="pk-constr" table="public.&quot;Local&quot;">
+		<columns names="id_local" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="Descuento" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="540" y="1560"/>
+	<column name="id_descuento" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="descripción">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="porcentaje">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="valor_fijo">
+		<type name="numeric" length="5" precision="2"/>
+	</column>
+	<column name="tipo_descuento">
+		<type name="boolean" length="0"/>
+	</column>
+	<constraint name="Descuento_pk" type="pk-constr" table="public.&quot;Descuento&quot;">
+		<columns names="id_descuento" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Cliente_empresa_has_many_Evento" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#b7700b"
+	 src-table="public.&quot;Cliente_empresa&quot;"
+	 dst-table="public.&quot;Evento&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="136.019" y="-39.353"/>
+	</label>
+</relationship>
+
+<relationship name="Tipo_de_evento_has_many_Evento" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#108abf"
+	 src-table="public.&quot;Tipo_de_evento&quot;"
+	 dst-table="public.&quot;Evento&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-139.308" y="-66.153"/>
+	</label>
+</relationship>
+
+<relationship name="Evento_has_one_Descuento" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#00c4d0"
+	 src-table="public.&quot;Descuento&quot;"
+	 dst-table="public.&quot;Evento&quot;"
+	 src-required="false" dst-required="true">
+	<label ref-type="name-label">
+		<position x="119.861" y="-20.053"/>
+	</label>
+</relationship>
+
+<relationship name="many_Local_has_many_Evento" type="relnn" layers="0"
+	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
+	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
+	 src-fk-pattern="{st}_fk" dst-fk-pattern="{dt}_fk"
+	 pk-col-pattern="id"
+	 fk-idx-pattern="{gt}_idx"
+	 custom-color="#edf943"
+	 src-table="public.&quot;Local&quot;"
+	 dst-table="public.&quot;Evento&quot;"
+	 src-required="false" dst-required="false"
+	 table-name="many_Local_has_many_Evento">
+	<label ref-type="name-label">
+		<position x="108.202" y="-83.3477"/>
+	</label>
+</relationship>
+
+<table name="Puntos_de_venta_presencial" layers="0" collapse-mode="2" max-obj-count="1" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1340" y="900"/>
+	<column name="id_punto_venta_presencial" not-null="true">
+		<type name="jsonb" length="0"/>
+	</column>
+	<constraint name="Puntos_de_venta_presencial_pk" type="pk-constr" table="public.&quot;Puntos_de_venta_presencial&quot;">
+		<columns names="id_punto_venta_presencial" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Puntos_de_venta_presencial_has_many_Vendedor_presencial" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#b2b277"
+	 src-table="public.&quot;Puntos_de_venta_presencial&quot;"
+	 dst-table="public.&quot;Vendedor_presencial&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="268.216" y="-57.453"/>
+	</label>
+</relationship>
+
+<table name="Venta" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1040" y="1100"/>
+	<column name="id_venta" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="tipo_venta" not-null="true">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="fecha" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="total" not-null="true">
+		<type name="numeric" length="5" precision="2"/>
+	</column>
+	<constraint name="Venta_pk" type="pk-constr" table="public.&quot;Venta&quot;">
+		<columns names="id_venta" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_evento_Evento" index="4"/>
+		<object name="id_vendedor_presencial_Vendedor_presencial" index="5"/>
+	</customidxs>
+	<customidxs object-type="constraint">
+		<object name="Evento_fk" index="1"/>
+		<object name="Vendedor_presencial_fk" index="2"/>
+	</customidxs></table>
+
+<table name="Ticket" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1980" y="840"/>
+	<column name="id_ticket" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="codigo_ticket" not-null="true">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="fecha" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="Ticket_pk" type="pk-constr" table="public.&quot;Ticket&quot;">
+		<columns names="id_ticket" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Evento_has_many_Venta" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#770e0b"
+	 src-table="public.&quot;Evento&quot;"
+	 dst-table="public.&quot;Venta&quot;"
+	 src-required="true" dst-required="false"/>
+
+<relationship name="Vendedor_presencial_has_many_Venta" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#61f92b"
+	 src-table="public.&quot;Vendedor_presencial&quot;"
+	 dst-table="public.&quot;Venta&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-138.243" y="-11.953"/>
+	</label>
+</relationship>
+
+<relationship name="Puntos_de_venta_presencial_has_many_Venta" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#bf64c5"
+	 src-table="public.&quot;Puntos_de_venta_presencial&quot;"
+	 dst-table="public.&quot;Venta&quot;"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="170.285" y="-25.453"/>
+	</label>
+</relationship>
+
+<relationship name="Venta_has_one_Ticket" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#176b64"
+	 src-table="public.&quot;Ticket&quot;"
+	 dst-table="public.&quot;Venta&quot;"
+	 src-required="false" dst-required="true"/>
+
+<relationship name="Cliente_comprador_has_many_Ticket" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#c55d3a"
+	 src-table="public.&quot;Cliente_comprador&quot;"
+	 dst-table="public.&quot;Ticket&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="154.234" y="-53.853"/>
+	</label>
+</relationship>
+
+</dbmodel>
