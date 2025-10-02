@@ -3,9 +3,9 @@
 CAUTION: Do not modify this file unless you know what you are doing.
  Unexpected results may occur if the code is changed deliberately.
 -->
-<dbmodel pgmodeler-ver="1.2.1" use-changelog="false" max-obj-count="16"
+<dbmodel pgmodeler-ver="1.2.1" use-changelog="false" max-obj-count="22"
 	 gen-disabled-objs-code="false" show-sys-schemas-rects="true"
-	 last-position="-80,772" last-zoom="0.8" scene-rect="-100,0,2545.33,1833.32"
+	 last-position="-228,1022" last-zoom="0.95" scene-rect="-240,0,2765.33,2046.32"
 	 default-schema="public" default-owner="postgres"
 	 layers="Default layer"
 	 active-layers="0"
@@ -18,16 +18,40 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <schema name="public" layers="0" fill-color="#e1e1e1" name-color="#000000" sql-disabled="true">
 </schema>
 
-<table name="Usuario" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
+<table name="Usuario" layers="0" collapse-mode="2" max-obj-count="12" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="520" y="300"/>
+	<position x="520" y="220"/>
 	<column name="id_usuario" not-null="true"
 	 identity-type="ALWAYS">
 		<type name="integer" length="0"/>
 	</column>
 	<column name="tipo_usuario">
 		<type name="varchar" length="50"/>
+	</column>
+	<column name="nombre_pila">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="apellido_paterno">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="apellido_materno">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="foto_perfil">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="contrasena" not-null="true">
+		<type name="varchar" length="25"/>
+	</column>
+	<column name="correo_electronico" not-null="true">
+		<type name="varchar" length="254"/>
+	</column>
+	<column name="telefono">
+		<type name="varchar" length="12"/>
+	</column>
+	<column name="estado">
+		<type name="boolean" length="0"/>
 	</column>
 	<constraint name="PK_id_usuario" type="pk-constr" table="public.&quot;Usuario&quot;">
 		<columns names="id_usuario" ref-type="src-columns"/>
@@ -42,6 +66,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 identity-type="ALWAYS">
 		<type name="integer" length="0"/>
 	</column>
+	<column name="num_identificacion">
+		<type name="varchar" length="20"/>
+	</column>
 	<constraint name="pk_id_cliente_comprador" type="pk-constr" table="public.&quot;Cliente_comprador&quot;">
 		<columns names="id_cliente_comprador" ref-type="src-columns"/>
 	</constraint>
@@ -54,13 +81,22 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<object name="Usuario_fk" index="0"/>
 	</customidxs></table>
 
-<table name="Cliente_empresa" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+<table name="Cliente_empresa" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="480" y="600"/>
+	<position x="500" y="600"/>
 	<column name="id_cliente_empresa" not-null="true"
 	 identity-type="ALWAYS">
 		<type name="integer" length="0"/>
+	</column>
+	<column name="RUC">
+		<type name="varchar" length="11"/>
+	</column>
+	<column name="razon_social">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="nombre_comercial">
+		<type name="varchar" length="30"/>
 	</column>
 	<constraint name="Cliente_empresa_pk" type="pk-constr" table="public.&quot;Cliente_empresa&quot;">
 		<columns names="id_cliente_empresa" ref-type="src-columns"/>
@@ -96,24 +132,33 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 custom-color="#b29953"
 	 src-table="public.&quot;Usuario&quot;"
 	 dst-table="public.&quot;Cliente_empresa&quot;"
-	 src-required="true" dst-required="false"/>
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="14.0584" y="-23.853"/>
+	</label>
+</relationship>
 
 <table name="Vendedor_presencial" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1060" y="600"/>
+	<position x="1040" y="600"/>
 	<column name="id_vendedor_presencial" not-null="true"
 	 identity-type="ALWAYS">
 		<type name="integer" length="0"/>
+	</column>
+	<column name="sueldo">
+		<type name="smallint" length="0"/>
 	</column>
 	<constraint name="pk_id_vendedor" type="pk-constr" table="public.&quot;Vendedor_presencial&quot;">
 		<columns names="id_vendedor_presencial" ref-type="src-columns"/>
 	</constraint>
 
 	<customidxs object-type="column">
+		<object name="id_punto_venta_presencial_Puntos_de_venta_presencial" index="2"/>
 		<object name="id_usuario_Usuario" index="1"/>
 	</customidxs>
 	<customidxs object-type="constraint">
+		<object name="Puntos_de_venta_presencial_fk" index="3"/>
 		<object name="Usuario_fk" index="1"/>
 		<object name="Vendedor_presencial_uq" index="2"/>
 	</customidxs></table>
@@ -131,7 +176,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="Admim" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1080" y="40"/>
+	<position x="1080" y="20"/>
 	<column name="id_vendedor_presencial" not-null="true"
 	 identity-type="ALWAYS">
 		<type name="integer" length="0"/>
@@ -151,37 +196,63 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;Usuario&quot;"
 	 src-required="false" dst-required="true"/>
 
-<table name="Evento" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+<table name="Evento" layers="0" collapse-mode="2" max-obj-count="10" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="340" y="1060"/>
+	<position x="440" y="1040"/>
 	<column name="id_evento" not-null="true">
 		<type name="integer" length="0"/>
+	</column>
+	<column name="descripcion" not-null="true">
+		<type name="varchar" length="2000"/>
+	</column>
+	<column name="imagen_publicitaria" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="imagen_distribucion" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="enlace_playlist">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="edad_min" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="estado">
+		<type name="boolean" length="0"/>
 	</column>
 	<constraint name="Evento_pk" type="pk-constr" table="public.&quot;Evento&quot;">
 		<columns names="id_evento" ref-type="src-columns"/>
 	</constraint>
-</table>
+
+	<customidxs object-type="column">
+		<object name="id_cliente_empresa_Cliente_empresa" index="1"/>
+		<object name="id_tipo_evento_Tipo_de_evento" index="2"/>
+	</customidxs>
+	<customidxs object-type="constraint">
+		<object name="Cliente_empresa_fk" index="1"/>
+		<object name="Tipo_de_evento_fk" index="2"/>
+	</customidxs></table>
 
 <table name="Tipo_de_evento" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="80" y="1580"/>
+	<position x="40" y="820"/>
 	<column name="id_tipo_evento" not-null="true">
 		<type name="smallint" length="0"/>
 	</column>
-	<column name="descripcion" not-null="true">
-		<type name="varchar" length="255"/>
+	<column name="nombre" not-null="true">
+		<type name="varchar" length="30"/>
 	</column>
 	<constraint name="Tipo_de_evento_pk" type="pk-constr" table="public.&quot;Tipo_de_evento&quot;">
 		<columns names="id_tipo_evento" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="Local" layers="0" collapse-mode="2" max-obj-count="3" z-value="0">
+<table name="Local" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1000" y="1600"/>
+	<position x="-100" y="1100"/>
 	<column name="id_local" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -191,20 +262,26 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="direccion">
 		<type name="varchar" length="255"/>
 	</column>
+	<column name="direccion_maps">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="ciudad">
+		<type name="smallint" length="0"/>
+	</column>
 	<constraint name="Local_pk" type="pk-constr" table="public.&quot;Local&quot;">
 		<columns names="id_local" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="Descuento" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+<table name="Descuento" layers="0" collapse-mode="2" max-obj-count="13" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="540" y="1560"/>
+	<position x="-160" y="1640"/>
 	<column name="id_descuento" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
-	<column name="descripción">
-		<type name="varchar" length="255"/>
+	<column name="codigo">
+		<type name="varchar" length="20"/>
 	</column>
 	<column name="porcentaje">
 		<type name="smallint" length="0"/>
@@ -213,6 +290,21 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<type name="numeric" length="5" precision="2"/>
 	</column>
 	<column name="tipo_descuento">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="fecha_inicio">
+		<type name="date" length="0"/>
+	</column>
+	<column name="hora_inicio">
+		<type name="time" length="0"/>
+	</column>
+	<column name="fecha_fin">
+		<type name="date" length="0"/>
+	</column>
+	<column name="hora_fin">
+		<type name="time" length="0"/>
+	</column>
+	<column name="estado">
 		<type name="boolean" length="0"/>
 	</column>
 	<constraint name="Descuento_pk" type="pk-constr" table="public.&quot;Descuento&quot;">
@@ -248,20 +340,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</label>
 </relationship>
 
-<relationship name="Evento_has_one_Descuento" type="rel11" layers="0"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 fk-idx-pattern="{st}_idx"
-	 custom-color="#00c4d0"
-	 src-table="public.&quot;Descuento&quot;"
-	 dst-table="public.&quot;Evento&quot;"
-	 src-required="false" dst-required="true">
-	<label ref-type="name-label">
-		<position x="119.861" y="-20.053"/>
-	</label>
-</relationship>
-
 <relationship name="many_Local_has_many_Evento" type="relnn" layers="0"
 	 src-col-pattern="{sc}_{st}" dst-col-pattern="{sc}_{dt}"
 	 pk-pattern="{gt}_pk" uq-pattern="{gt}_uq"
@@ -274,16 +352,19 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-required="false" dst-required="false"
 	 table-name="many_Local_has_many_Evento">
 	<label ref-type="name-label">
-		<position x="108.202" y="-83.3477"/>
+		<position x="15.9815" y="-34.0888"/>
 	</label>
 </relationship>
 
-<table name="Puntos_de_venta_presencial" layers="0" collapse-mode="2" max-obj-count="1" z-value="0">
+<table name="Puntos_de_venta_presencial" layers="0" collapse-mode="2" max-obj-count="2" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1340" y="900"/>
+	<position x="1480" y="900"/>
 	<column name="id_punto_venta_presencial" not-null="true">
 		<type name="jsonb" length="0"/>
+	</column>
+	<column name="direccion">
+		<type name="varchar" length="255"/>
 	</column>
 	<constraint name="Puntos_de_venta_presencial_pk" type="pk-constr" table="public.&quot;Puntos_de_venta_presencial&quot;">
 		<columns names="id_punto_venta_presencial" ref-type="src-columns"/>
@@ -300,14 +381,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;Vendedor_presencial&quot;"
 	 src-required="true" dst-required="false">
 	<label ref-type="name-label">
-		<position x="268.216" y="-57.453"/>
+		<position x="170.703" y="-37.453"/>
 	</label>
 </relationship>
 
 <table name="Venta" layers="0" collapse-mode="2" max-obj-count="8" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1040" y="1100"/>
+	<position x="1140" y="1140"/>
 	<column name="id_venta" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -333,10 +414,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<object name="Vendedor_presencial_fk" index="2"/>
 	</customidxs></table>
 
-<table name="Ticket" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+<table name="Ticket" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
 	<schema name="public"/>
 	<role name="postgres"/>
-	<position x="1980" y="840"/>
+	<position x="2060" y="940"/>
 	<column name="id_ticket" not-null="true">
 		<type name="integer" length="0"/>
 	</column>
@@ -385,7 +466,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="public.&quot;Venta&quot;"
 	 src-required="false" dst-required="false">
 	<label ref-type="name-label">
-		<position x="170.285" y="-25.453"/>
+		<position x="116.689" y="-25.453"/>
 	</label>
 </relationship>
 
@@ -412,5 +493,149 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<position x="154.234" y="-53.853"/>
 	</label>
 </relationship>
+
+<table name="Zonas" layers="0" collapse-mode="2" max-obj-count="4" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1380" y="1780"/>
+	<column name="id_zona" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="nombre">
+		<type name="varchar" length="30"/>
+	</column>
+	<column name="descripcion">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="precio">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="Zonas_pk" type="pk-constr" table="public.&quot;Zonas&quot;">
+		<columns names="id_zona" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Zonas_has_many_Ticket" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#df3b0e"
+	 src-table="public.&quot;Zonas&quot;"
+	 dst-table="public.&quot;Ticket&quot;"
+	 src-required="true" dst-required="false"/>
+
+<table name="Horarios_Eventos" layers="0" collapse-mode="2" max-obj-count="6" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="500" y="1720"/>
+	<column name="id_horario_eventos" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="fecha_inicio" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="hora_inicio" not-null="true">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="duracion" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="Horarios_Eventos_pk" type="pk-constr" table="public.&quot;Horarios_Eventos&quot;">
+		<columns names="id_horario_eventos" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="Evento_has_many_Horarios_Eventos" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#4c700a"
+	 src-table="public.&quot;Evento&quot;"
+	 dst-table="public.&quot;Horarios_Eventos&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="65.6783" y="27.047"/>
+	</label>
+</relationship>
+
+<table name="Stock_Eventos_Zonas" layers="0" collapse-mode="2" max-obj-count="7" z-value="0">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="900" y="1520"/>
+	<column name="stock_inicial">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="sock_vendido">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="id_evento_zonas" not-null="true">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="Eventos_Zonas_pk" type="pk-constr" table="public.&quot;Stock_Eventos_Zonas&quot;">
+		<columns names="id_evento_zonas" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_evento_Evento" index="2"/>
+		<object name="id_zona_Zonas" index="3"/>
+	</customidxs>
+	<customidxs object-type="constraint">
+		<object name="Evento_fk" index="0"/>
+		<object name="Zonas_fk" index="1"/>
+	</customidxs></table>
+
+<relationship name="Evento_has_many_Eventos_Zonas" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#7f41ee"
+	 src-table="public.&quot;Evento&quot;"
+	 dst-table="public.&quot;Stock_Eventos_Zonas&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="Zonas_has_many_Eventos_Zonas" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#7dc8c6"
+	 src-table="public.&quot;Zonas&quot;"
+	 dst-table="public.&quot;Stock_Eventos_Zonas&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="111.383" y="-81.893"/>
+	</label>
+</relationship>
+
+<relationship name="Horarios_Eventos_has_many_Stock_Eventos_Zonas" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#679414"
+	 src-table="public.&quot;Horarios_Eventos&quot;"
+	 dst-table="public.&quot;Stock_Eventos_Zonas&quot;"
+	 src-required="true" dst-required="false">
+	<label ref-type="name-label">
+		<position x="157.913" y="18.24"/>
+	</label>
+</relationship>
+
+<relationship name="Horarios_Eventos_has_one_Descuento" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 fk-idx-pattern="{st}_idx"
+	 custom-color="#fe3821"
+	 src-table="public.&quot;Descuento&quot;"
+	 dst-table="public.&quot;Horarios_Eventos&quot;"
+	 src-required="false" dst-required="true"/>
 
 </dbmodel>
