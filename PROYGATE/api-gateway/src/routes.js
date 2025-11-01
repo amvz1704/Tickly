@@ -73,17 +73,5 @@ app.use(
 
 
 
-  // Ejemplo futuro (si quisieras que /usuarios/admin sea solo para ADMIN):
-  /*
-  app.use(
-    "/usuarios/admin",
-    authMiddleware,
-    authorizeRoles("ADMIN"),
-    createProxyMiddleware({
-      target: USUARIOS_TARGET,
-      changeOrigin: true,
-      pathRewrite: { "^/usuarios": "/usuarios" }
-    })
-  );
-  */
+
 }

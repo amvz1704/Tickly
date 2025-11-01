@@ -11,5 +11,5 @@ registerRoutes(app);
 
 const PORT = process.env.GATEWAY_PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`🧠 API Gateway escuchando en puerto ${PORT}`);
+  console.log(`API GATEWAY UP! API Gateway escuchando en puerto ${PORT}`);
 });

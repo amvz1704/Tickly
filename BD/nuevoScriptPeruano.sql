@@ -9,7 +9,7 @@ CREATE TABLE public."Usuario" (
 	apellido_paterno varchar(30),
 	apellido_materno varchar(30),
 	foto_perfil varchar(255),
-	contrasena varchar(100) NOT NULL,  -- ✅ Ampliado de 25 a 100
+	contrasena varchar(100) NOT NULL, 
 	correo_electronico varchar(254) NOT NULL,
 	telefono varchar(12),
 	estado boolean,
