@@ -8,12 +8,12 @@ export const authMiddleware = (req, res, next) => {
     const token = authHeader.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // 🔹 Añadir los datos del usuario a los headers para reenviarlos
+    // Añadir los datos del usuario a los headers para reenviarlos
     req.headers["x-user-id"] = decoded.sub;
     req.headers["x-user-role"] = decoded.tipo_usuario;
     req.headers["x-user-email"] = decoded.correo;
 
-    // 🔹 También guardarlo en req.user por si se necesita más adelante
+    // También guardarlo en req.user por si se necesita más adelante
     req.user = decoded;
 
     next();

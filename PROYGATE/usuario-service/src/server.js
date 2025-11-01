@@ -6,7 +6,7 @@ async function bootstrap() {
   // prueba de conexión a DB
   await pool.query("SELECT 1");
   app.listen(config.port, () => {
-    console.log(`🚀 usuario-service escuchando en puerto ${config.port}`);
+    console.log(`SERVICIO UP! usuario-service escuchando en puerto ${config.port}`);
   });
 }
 

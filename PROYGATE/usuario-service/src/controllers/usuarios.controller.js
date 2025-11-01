@@ -1,10 +1,10 @@
 import { pool } from "../config/db.js";
 import { hashPassword, comparePassword } from "../utils/password.js";
 
-/** Perfil propio */
+//Informacion de perfil propio
 export const me = async (req, res, next) => {
   try {
-    // 🔹 Tomamos el id de usuario ya decodificado por el Gateway
+    // Tomamos el id de usuario ya decodificado por el Gateway
     const userId = req.user?.sub || req.headers["x-user-id"];
 
     if (!userId) {
@@ -28,7 +28,7 @@ export const me = async (req, res, next) => {
   }
 };
 
-/** Cambio de contraseña propia */
+// Cambio de contraseña propia
 export const changePassword = async (req, res, next) => {
   try {
     const userId = req.user?.sub || req.headers["x-user-id"];
@@ -62,8 +62,7 @@ export const changePassword = async (req, res, next) => {
 };
 
 
-//Listar todos los usuarios con su tipo de usuario
-/** Listar todos los usuarios (solo ADMIN) */
+//Listar todos los usuarios (solo puede acceder un administrador)
 export const getAllUsuarios = async (req, res, next) => {
   try {
     const { rows } = await pool.query(
