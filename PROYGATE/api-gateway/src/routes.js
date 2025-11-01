@@ -35,7 +35,7 @@ app.use(
     if (req.method === "GET" && (req.path === "/" || req.path === "")) {
       return authorizeRoles("ADMIN")(req, res, next);
     }
-    next(); // deja pasar los demás endpoints
+    next(); 
   },
   createProxyMiddleware({
     target: USUARIOS_TARGET,
@@ -69,9 +69,6 @@ app.use(
     }
   })
 );
-
-
-
 
 
 }
